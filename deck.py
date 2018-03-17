@@ -41,8 +41,11 @@ class Deck:
         shuffle(self.deck)
         return self.deck.pop()
 
+    def __len__(self):
+        return len(self.deck)
+
     def __str__(self):
-        return 'Deck of cards with {0} cards remaining.'.format(len(self.deck))
+        return 'Deck of cards with {0} cards remaining.'.format(len(self))
 
     def __repr__(self):
         return '{0.__class__.__name__}'.format(self)
