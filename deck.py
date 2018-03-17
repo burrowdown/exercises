@@ -1,4 +1,5 @@
 class Card:
+
     def __init__(self, face, suit):
         self.face = face
         self.suit = suit
@@ -13,3 +14,12 @@ class Card:
             self.face = "K"
         else:
             self.face = str(face)
+
+
+class Deck:
+
+    def __init__(self):
+        suits = ["clubs", "diamonds", "hearts", "spades"]
+        cards = [Card(value, suit) for value in range(1, 14) for suit in suits]
+        self.deck = cards
+
