@@ -27,13 +27,17 @@ class TestDeckCreation(unittest.TestCase):
 
     def setUp(self):
         self.card_deck = deck.Deck()
+        self.first_card = deck.Card(1, "clubs")
 
     def test_deck_creation(self):
         self.assertEqual(len(self.card_deck.deck), 52)
         self.assertIsInstance(self.card_deck.deck[0], deck.Card)
+        self.assertEqual(str(self.card_deck.deck[0]), str(self.first_card))
 
     def test_deck_str_method(self):
         self.assertEqual(str(self.card_deck), 'Deck of cards with 52 cards remaining.')
+        self.card_deck.draw()
+        self.assertEqual(str(self.card_deck), 'Deck of cards with 51 cards remaining.')
 
     def test_deck_repr_method(self):
         self.assertEqual(repr(self.card_deck), 'Deck')
