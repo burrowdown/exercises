@@ -41,6 +41,16 @@ class Deck:
         shuffle(self.deck)
         return self.deck.pop()
 
+    def deal(self, players, cards_per_hand):
+        shuffle(self.deck)
+        output = list()
+        for p in range(players):
+            hand = list()
+            for card in range(cards_per_hand):
+                hand.append(self.draw())
+            output.append(hand)
+        return output
+
     def __len__(self):
         return len(self.deck)
 

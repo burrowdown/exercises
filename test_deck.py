@@ -52,3 +52,10 @@ class TestDeckMethods(TestDeckCreation):
 
     def test_drawn_card(self):
         self.assertIsInstance(self.card_deck.draw(), deck.Card)
+
+    def test_deal(self):
+        hands = self.card_deck.deal(2, 5)
+        self.assertEqual(len(hands), 2)
+        self.assertEqual(len(hands[0]), 5)
+        self.assertIsInstance(hands[0][0], deck.Card)
+        self.assertEqual(len(self.card_deck), 42)
