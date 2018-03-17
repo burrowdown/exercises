@@ -1,3 +1,6 @@
+from random import shuffle
+
+
 class Card:
 
     def __init__(self, face, suit):
@@ -22,4 +25,8 @@ class Deck:
         suits = ["clubs", "diamonds", "hearts", "spades"]
         cards = [Card(value, suit) for value in range(1, 14) for suit in suits]
         self.deck = cards
+
+    def draw(self):
+        shuffle(self.deck)
+        return self.deck.pop()
 
