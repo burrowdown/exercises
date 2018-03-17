@@ -21,3 +21,14 @@ class TestDeckCreation(unittest.TestCase):
     def test_deck_creation(self):
         self.assertEqual(len(self.card_deck.deck), 52)
         self.assertIsInstance(self.card_deck.deck[0], deck.Card)
+
+
+class TestDeckMethods(TestDeckCreation):
+
+    def test_draw(self):
+        self.assertEqual(len(self.card_deck.deck), 52)
+        self.card_deck.draw()
+        self.assertEqual(len(self.card_deck.deck), 51)
+
+    def test_drawn_card(self):
+        self.assertIsInstance(self.card_deck.draw(), deck.Card)
