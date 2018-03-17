@@ -16,6 +16,12 @@ class TestCardCreation(unittest.TestCase):
         self.assertEqual(self.king_hearts.value, 10)
         self.assertEqual(self.four_diamonds.value, 4)
 
+    def test_card_str_method(self):
+        self.assertEqual(str(self.four_diamonds), '4 of diamonds')
+
+    def test_card_repr_method(self):
+        self.assertEqual(repr(self.king_hearts), 'Card (K hearts)')
+
 
 class TestDeckCreation(unittest.TestCase):
 
@@ -25,6 +31,12 @@ class TestDeckCreation(unittest.TestCase):
     def test_deck_creation(self):
         self.assertEqual(len(self.card_deck.deck), 52)
         self.assertIsInstance(self.card_deck.deck[0], deck.Card)
+
+    def test_deck_str_method(self):
+        self.assertEqual(str(self.card_deck), 'Deck of cards with 52 cards remaining.')
+
+    def test_deck_repr_method(self):
+        self.assertEqual(repr(self.card_deck), 'Deck')
 
 
 class TestDeckMethods(TestDeckCreation):

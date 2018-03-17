@@ -23,6 +23,12 @@ class Card:
             self.face = str(face)
             self.value = face
 
+    def __str__(self):
+        return '{0.face} of {0.suit}'.format(self)
+
+    def __repr__(self):
+        return '{0.__class__.__name__} ({0.face} {0.suit})'.format(self)
+
 
 class Deck:
 
@@ -35,3 +41,8 @@ class Deck:
         shuffle(self.deck)
         return self.deck.pop()
 
+    def __str__(self):
+        return 'Deck of cards with {0} cards remaining.'.format(len(self.deck))
+
+    def __repr__(self):
+        return '{0.__class__.__name__}'.format(self)
