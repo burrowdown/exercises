@@ -10,4 +10,4 @@ class TestCardCreation(unittest.TestCase):
 
     def test_card_creation(self):
         self.assertEqual(self.king_hearts.suit, "hearts")
-        self.assertEqual(self.four_diamonds.face, "four")
+        self.assertEqual(self.four_diamonds.face, "4")
