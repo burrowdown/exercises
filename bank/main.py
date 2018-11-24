@@ -46,6 +46,10 @@ def history():
         for entry in bank.active_user.history:
             print(entry)
 
+def close_account():
+    if authorize():
+        bank.remove_account()
+
 
 def menu():
     return input(
@@ -58,6 +62,7 @@ def menu():
         "> Press 5 to make a deposit \n"
         "> Press 6 to make a withdrawal \n"
         "> Press 7 to view account history \n"
+        "> Press 8 to close your account \n"
         "> Press 0 to quit"
         "\n\n_____________________________________________\n\n::"
     )
@@ -70,6 +75,7 @@ actions = {
     "5": deposit,
     "6": withdraw,
     "7": history,
+    "8": close_account,
     "0": exit
 }
 

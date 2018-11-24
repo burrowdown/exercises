@@ -31,9 +31,9 @@ class Bank:
         return new_account
 
 
-    def remove_account(self, account):
-        # comment here
-        self.user_store.pop(account, None)
+    def remove_account(self):
+        print("\n\nHere is your balance of ${}. Your account is hereby closed.".format(self.active_user.balance))
+        self.user_store.pop(self.active_user.account_id, None)
         self.active_user = None
 
 
