@@ -14,16 +14,15 @@ class Bank:
         # Get user input
         owner = input("What is the account holder's name?    ")
         animal = input("What is your favorite animal?    ").lower()
-        starting_balance = self.get_user_int("What is the initial deposit?    $")
+        starting_balance = self.get_user_int("What is the initial deposit?   $")
         account_number = str(randint(1000, 9999))
-        print(
-            "\n======================================\n"
-            "Account successfully created for {0}\n"
-            "Current balance is ${1}\n"
-            "Your account number is: {2}\n"
-            "You will need this number for future transactions.\n"
-            "======================================"
-            .format(owner, starting_balance, account_number))
+        print("\n======================================\n"
+              "Account successfully created for {0}\n"
+              "Current balance is ${1}\n"
+              "Your account number is: {2}\n"
+              "You will need this number for future transactions.\n"
+              "======================================"
+              .format(owner, starting_balance, account_number))
 
         # Create new account from user input, add to user store, and log in
         new_account = Account(owner, starting_balance, animal, account_number)
@@ -34,7 +33,9 @@ class Bank:
 
 
     def remove_account(self):
-        print("\n\nHere is your balance of ${}. Your account is hereby closed.".format(self.active_user.balance))
+        print("\n\nHere is your balance of ${}. "
+              "Your account is hereby closed."
+              .format(self.active_user.balance))
         self.user_store.pop(self.active_user.account_id, None)
         self.active_user = None
 
@@ -52,7 +53,8 @@ class Bank:
         if self._validate_animal(account):
             # Perform login
             self.active_user = account
-            print("Welcome, {0}. Your current balance is {1}.".format(account.owner, account.balance))
+            print("Welcome, {0}. Your current balance is {1}."
+                  .format(account.owner, account.balance))
             return account
 
 
@@ -60,11 +62,13 @@ class Bank:
         while True:
             try:
                 number_in = input(message)
+                # Strip out ',' and '$', split by '.' and discard what follows
                 number_in_clean = number_in.replace(",", "").replace("$", "")
                 dollars, point, cents = number_in_clean.partition(".")
                 dollars = int(dollars)
                 if cents:
-                        print("\n******** This bank only deals in whole dollars. Keep your $0." + cents)
+                        print("\nThis bank only deals in whole dollars."
+                              "Keep your $0." + cents)
                 if dollars >= 0:
                     return dollars
                 print("Please enter a positive number")
@@ -78,7 +82,11 @@ class Bank:
             if account_number == "x":
                 return None
             else:
-                account_number = input("That is not a valid account number. Try again, or type 'x' to return to the main menu. \n\nAccount number: ")
+                account_number = input(
+                    "\nThat is not a valid account number. "
+                    "Try again, or type 'x' to return to the main menu. "
+                    "\n\nAccount number: "
+                )
         return account_number
 
 
