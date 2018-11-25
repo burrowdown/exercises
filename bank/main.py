@@ -86,4 +86,3 @@ if __name__ == '__main__':
             actions[menu()]()
         except KeyError:
             print("That is not a valid command")
-            menu()
