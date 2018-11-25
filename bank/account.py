@@ -44,8 +44,9 @@ class Account:
         # Handle withdrawals
         if message == "withdraw":
             if amount > self.balance:
-                print("You don't have {} to withdraw. Your current balance is ${}"
-                        .format(amount, str(self.balance)))
+                print("You don't have {0} to withdraw. "
+                      "Your current balance is ${1}"
+                      .format(amount, str(self.balance)))
                 return amount
             amount = 0 - amount
             message = "withdrawal"

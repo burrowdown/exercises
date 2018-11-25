@@ -24,7 +24,7 @@ class Bank:
               "======================================"
               .format(owner, starting_balance, account_number))
 
-        # Create new account from user input, add to user store, and log in
+        # Create new account, add to user store, and log in
         new_account = Account(owner, starting_balance, animal, account_number)
         self.user_store[new_account.account_id] = new_account
         self.active_user = new_account
