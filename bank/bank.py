@@ -12,7 +12,7 @@ class Bank:
     def create_account(self):
         owner = input("What is the account holder's name?    ")
         animal = input("What is your favorite animal?    ").lower()
-        starting_balance = utils.get_user_int("What is the initial deposit?    $")
+        starting_balance = self._get_user_int("What is the initial deposit?    $")
         account_number = str(randint(1000, 9999))
         # TODO: think more about the UX here, combine with check_status?
         print(
@@ -64,6 +64,7 @@ class Bank:
                 account_number = input("That is not a valid account number. Try again, or type 'x' to return to the main menu. \n\nAccount number: ")
         return account_number
 
+
     def _validate_animal(self, account):
         while True:
             passphrase = input("What is your favorite animal?").lower()
@@ -71,3 +72,20 @@ class Bank:
                 return True
             else:
                 print("That's not what you told me last time.")
+
+
+    def _get_user_int(self, message):
+        while True:
+            try:
+                number_in = input(message)
+                number_in_clean = number_in.replace(",", "").replace("$", "")
+                dollars, point, cents = number_in_clean.partition(".")
+                dollars = int(dollars)
+                if cents:
+                        print("\n******** This bank only deals in whole dollars. Keep your $0." + cents)
+                while dollars < 0:
+                    print("Please enter a positive number")
+                    dollars = int(input(message))
+                return dollars
+            except ValueError:
+                print("Please enter a whole number.")

@@ -30,13 +30,13 @@ def check_status():
 
 def deposit():
     if authorize():
-        amount = utils.get_user_int("Amount to deposit: $")
+        amount = bank._get_user_int("Amount to deposit: $")
         bank.active_user.deposit(amount)
 
 
 def withdraw():
     if authorize():
-        amount = utils.get_user_int("Amount to withdraw: $")
+        amount = bank._get_user_int("Amount to withdraw: $")
         bank.active_user.withdraw(amount)
 
 
@@ -88,17 +88,3 @@ if __name__ == '__main__':
         except KeyError:
             print("That is not a valid command")
             menu()
-
-
-
-    # TODO:
-    # dollar signs everywhere
-    # allow $ and , and .
-    # change ints to floats???
-    # clean up whitespace
-    # clean up " vs "
-    # uniqueness constraint on account numbers
-    # TESTS
-    # can the UI be the same in every command?
-    # Comment everything
-    # quit at any point?
