@@ -44,9 +44,8 @@ class Bank:
             print("You are already logged in. To switch accounts, log out first.")
             return self.active_user
 
+        # Get account instance from account number
         account_number = self._get_valid_account_number()
-
-        # Get account instace from account number
         account = self.user_store[account_number]
 
         # Validate user passphrase
@@ -55,6 +54,7 @@ class Bank:
             self.active_user = account
             print("Welcome, {0}. Your current balance is {1}.".format(account.owner, account.balance))
             return account
+
 
     def get_user_int(self, message):
         while True:
@@ -65,10 +65,9 @@ class Bank:
                 dollars = int(dollars)
                 if cents:
                         print("\n******** This bank only deals in whole dollars. Keep your $0." + cents)
-                while dollars < 0:
-                    print("Please enter a positive number")
-                    dollars = int(input(message))
-                return dollars
+                if dollars >= 0:
+                    return dollars
+                print("Please enter a positive number")
             except ValueError:
                 print("Please enter a whole number.")
 
