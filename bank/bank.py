@@ -1,20 +1,21 @@
 from account import Account
 from random import randint
-import utils
 
 
 class Bank:
+
 
     def __init__(self):
         self.user_store = dict()
         self.active_user = None
 
+
     def create_account(self):
+        # Get user input
         owner = input("What is the account holder's name?    ")
         animal = input("What is your favorite animal?    ").lower()
-        starting_balance = self._get_user_int("What is the initial deposit?    $")
+        starting_balance = self.get_user_int("What is the initial deposit?    $")
         account_number = str(randint(1000, 9999))
-        # TODO: think more about the UX here, combine with check_status?
         print(
             "\n======================================\n"
             "Account successfully created for {0}\n"
@@ -24,6 +25,7 @@ class Bank:
             "======================================"
             .format(owner, starting_balance, account_number))
 
+        # Create new account from user input, add to user store, and log in
         new_account = Account(owner, starting_balance, animal, account_number)
         self.user_store[new_account.account_id] = new_account
         self.active_user = new_account
@@ -38,7 +40,6 @@ class Bank:
 
 
     def login(self):
-
         if self.active_user != None:
             print("You are already logged in. To switch accounts, log out first.")
             return self.active_user
@@ -48,11 +49,28 @@ class Bank:
         # Get account instace from account number
         account = self.user_store[account_number]
 
+        # Validate user passphrase
         if self._validate_animal(account):
-            # Login complete
+            # Perform login
             self.active_user = account
             print("Welcome, {0}. Your current balance is {1}.".format(account.owner, account.balance))
             return account
+
+    def get_user_int(self, message):
+        while True:
+            try:
+                number_in = input(message)
+                number_in_clean = number_in.replace(",", "").replace("$", "")
+                dollars, point, cents = number_in_clean.partition(".")
+                dollars = int(dollars)
+                if cents:
+                        print("\n******** This bank only deals in whole dollars. Keep your $0." + cents)
+                while dollars < 0:
+                    print("Please enter a positive number")
+                    dollars = int(input(message))
+                return dollars
+            except ValueError:
+                print("Please enter a whole number.")
 
 
     def _get_valid_account_number(self):
@@ -72,20 +90,3 @@ class Bank:
                 return True
             else:
                 print("That's not what you told me last time.")
-
-
-    def _get_user_int(self, message):
-        while True:
-            try:
-                number_in = input(message)
-                number_in_clean = number_in.replace(",", "").replace("$", "")
-                dollars, point, cents = number_in_clean.partition(".")
-                dollars = int(dollars)
-                if cents:
-                        print("\n******** This bank only deals in whole dollars. Keep your $0." + cents)
-                while dollars < 0:
-                    print("Please enter a positive number")
-                    dollars = int(input(message))
-                return dollars
-            except ValueError:
-                print("Please enter a whole number.")

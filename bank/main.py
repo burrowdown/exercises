@@ -1,6 +1,5 @@
 import account
 import bank
-import utils
 
 
 print("\n\n~~~ Welcome to AltSource Bank ~~~")
@@ -23,20 +22,20 @@ def logout():
 
 def check_status():
     try:
-        bank.active_user.check_status()
+        bank.active_user.display_status()
     except AttributeError:
         authorize()
 
 
 def deposit():
     if authorize():
-        amount = bank._get_user_int("Amount to deposit: $")
+        amount = bank.get_user_int("Amount to deposit: $")
         bank.active_user.deposit(amount)
 
 
 def withdraw():
     if authorize():
-        amount = bank._get_user_int("Amount to withdraw: $")
+        amount = bank.get_user_int("Amount to withdraw: $")
         bank.active_user.withdraw(amount)
 
 
