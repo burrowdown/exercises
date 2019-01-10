@@ -19,10 +19,10 @@ In lieu of actually being able to design a robust solution, I'll do my best to d
 * Most importantly and most obviously, **unit tests**. It's embarrassing to even submit a code sample without tests, but I got a little ambitious and tried to use lab, hoping to stay in the hapi world, before realizing that using a brand new-to-me testing framework wasn't going to happen in the limited time I have. If I could to it again I'd just use mocha.
 
 * **Make serial API calls:**: You gave me 18 product IDs and the Product Lookup API accepts 20. Here's how I would approach a larger data set:
- * chunk the id's coming in from the CSV into groups of 20 (or fewer)
- * (this would be a good place to do some data validation on the id's)
- * for each chunk, make an API call
- * make those calls serially
+  * chunk the id's coming in from the CSV into groups of 20 (or fewer)
+  * (this would be a good place to do some data validation on the id's)
+  * for each chunk, make an API call
+  * make those calls serially
 
  * **Search both the short and long descriptions:** Not all products have a long description, and there may be other fields worth searching while we're at it. This should be quick to implement, I'd do it right now if I wasn't going to be late for an appointment!
 
