@@ -11,7 +11,7 @@ const server = Hapi.server({
 });
 
 function getUri() {
-  const uri_base = "http://api.walmartlabs.com/v1/items?apiKey=kjybrqfdgp3u4yv2qzcnjndj&format=json&ids="
+  const uri_base = "http://api.walmartlabs.com/v1/items?apiKey=kjybrqfdgp3u4yv2qzcnjndj&format=json&ids=";
   let ids = FS.readFileSync('data_file.csv', 'utf8').replace(/\n/g, '');
   let uri = uri_base + ids;
   return uri
@@ -23,9 +23,9 @@ async function initialize () {
 
   server.route({
     method: 'GET',
-    path: '/',
+    path: '/items/{keyword}',
     handler: (r, h) => {
-      return payload
+      return r.params.keyword;
     }
   });
 
