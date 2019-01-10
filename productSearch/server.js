@@ -9,10 +9,14 @@ const server = Hapi.server({
   host: 'localhost'
 });
 
+function getUri() {
+  const uri = "http://api.walmartlabs.com/v1/items?apiKey=kjybrqfdgp3u4yv2qzcnjndj&format=json&ids=14225185,14225186"
+  return uri
+};
+
 async function initialize () {
 
-  const uri = "http://api.walmartlabs.com/v1/items?apiKey=kjybrqfdgp3u4yv2qzcnjndj&format=json&ids=14225185,14225186"
-  const { res, payload } = await Wreck.get(uri, {json: true});
+  const { res, payload } = await Wreck.get(getUri(), {json: true});
 
   server.route({
     method: 'GET',
