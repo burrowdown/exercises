@@ -1,5 +1,6 @@
 'use strict';
 
+const FS = require('fs');
 const Hapi = require('hapi');
 const Wreck = require('wreck');
 
@@ -10,7 +11,9 @@ const server = Hapi.server({
 });
 
 function getUri() {
-  const uri = "http://api.walmartlabs.com/v1/items?apiKey=kjybrqfdgp3u4yv2qzcnjndj&format=json&ids=14225185,14225186"
+  const uri_base = "http://api.walmartlabs.com/v1/items?apiKey=kjybrqfdgp3u4yv2qzcnjndj&format=json&ids="
+  let ids = FS.readFileSync('data_file.csv', 'utf8').replace(/\n/g, '');
+  let uri = uri_base + ids;
   return uri
 };
 
