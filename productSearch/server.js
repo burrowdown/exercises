@@ -17,6 +17,21 @@ function getUri() {
   return uri
 };
 
+function searchProductsForKeyword(products, keyword) {
+  let output = new Array()
+  products.forEach((product) => {
+    try {
+      if (product.longDescription.includes(keyword)) {
+        output.push(product.itemId);
+      }
+    }
+    catch {
+      // ignore products with no longDescription
+    }
+  })
+  return output;
+};
+
 async function initialize () {
 
   const { res, payload } = await Wreck.get(getUri(), {json: true});
@@ -25,7 +40,7 @@ async function initialize () {
     method: 'GET',
     path: '/items/{keyword}',
     handler: (r, h) => {
-      return r.params.keyword;
+      return searchProductsForKeyword(payload.items, r.params.keyword)
     }
   });
 
