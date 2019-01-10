@@ -1,0 +1,15 @@
+{
+  "name": "productsearch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Danny Burrow",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^17.8.1",
+    "wreck": "^14.1.3"
+  }
+}
