@@ -21,7 +21,7 @@ function searchProductsForKeyword(products, keyword) {
   let output = new Array()
   products.forEach((product) => {
     try {
-      if (product.longDescription.includes(keyword)) {
+      if (product.longDescription.toLowerCase().includes(keyword)) {
         output.push(product.itemId);
       }
     }
@@ -40,7 +40,7 @@ async function initialize () {
     method: 'GET',
     path: '/items/{keyword}',
     handler: (r, h) => {
-      return searchProductsForKeyword(payload.items, r.params.keyword)
+      return searchProductsForKeyword(payload.items, r.params.keyword.toLowerCase())
     }
   });
 
