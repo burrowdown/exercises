@@ -1,6 +1,10 @@
-function ColorPicker({ color }) {
-  // TODO: set color using react state
-  const handleColorChange = (e) => {}
+import { useState } from "react"
+
+function ColorPicker({ initColor }) {
+  const [color, setColor] = useState(initColor)
+  const handleColorChange = (e) => {
+    setColor((color) => e.target.value)
+  }
 
   return (
     <div className="color-field" style={{ backgroundColor: color }}>
